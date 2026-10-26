@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Service\AuthService;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\Fake\InMemoryUserRepository;
 
@@ -45,7 +44,7 @@ final class AuthServiceTest extends TestCase
         $this->assertArrayHasKey('password', $this->auth->register('Ana', 'a@mail.com', '123456789', '123456789')['errors']);
     }
 
-    #[DataProvider('nombresInvalidos')]
+    /** @dataProvider nombresInvalidos */
     public function test_rechaza_nombres_invalidos(string $name): void
     {
         $r = $this->auth->register($name, 'ana@mail.com', 'secreto123', 'secreto123');
@@ -57,7 +56,7 @@ final class AuthServiceTest extends TestCase
         return [[''], ['   '], ['A'], ['<script>'], ['1234'], [str_repeat('a', 101)]];
     }
 
-    #[DataProvider('nombresValidos')]
+    /** @dataProvider nombresValidos */
     public function test_acepta_nombres_validos(string $name): void
     {
         $r = $this->auth->register($name, uniqid() . '@mail.com', 'secreto123', 'secreto123');

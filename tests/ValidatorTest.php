@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Validation\Validator;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ValidatorTest extends TestCase
@@ -33,7 +32,7 @@ final class ValidatorTest extends TestCase
         $this->assertFalse((new Validator())->maxLength('a', 'ñññ', 3, 'A')->fails()); // multibyte
     }
 
-    #[DataProvider('emails')]
+    /** @dataProvider emails */
     public function test_email(string $value, bool $valid): void
     {
         $this->assertSame(!$valid, (new Validator())->email('e', $value, 'Correo')->fails());
@@ -51,7 +50,7 @@ final class ValidatorTest extends TestCase
         ];
     }
 
-    #[DataProvider('decimales')]
+    /** @dataProvider decimales */
     public function test_decimal(string $value, bool $valid): void
     {
         $v = (new Validator())->decimal('p', $value, 0.01, 1000.00, 'Precio');
@@ -67,7 +66,7 @@ final class ValidatorTest extends TestCase
         ];
     }
 
-    #[DataProvider('enteros')]
+    /** @dataProvider enteros */
     public function test_integer(string $value, bool $valid): void
     {
         $v = (new Validator())->integer('s', $value, 0, 100, 'Stock');
@@ -83,7 +82,7 @@ final class ValidatorTest extends TestCase
         ];
     }
 
-    #[DataProvider('passwords')]
+    /** @dataProvider passwords */
     public function test_password(string $value, bool $valid): void
     {
         $this->assertSame(!$valid, (new Validator())->password('p', $value)->fails(), "Valor: $value");

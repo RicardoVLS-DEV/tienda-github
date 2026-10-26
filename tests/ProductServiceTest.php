@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Service\ProductService;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\Fake\InMemoryProductRepository;
 
@@ -44,7 +43,7 @@ final class ProductServiceTest extends TestCase
         $this->assertNull($r['id']);
     }
 
-    #[DataProvider('nombres')]
+    /** @dataProvider nombres */
     public function test_validacion_de_nombre(string $name, bool $valid): void
     {
         $r = $this->svc->validate($this->valid(['name' => $name]));
@@ -56,7 +55,7 @@ final class ProductServiceTest extends TestCase
         return [['Ab', true], [str_repeat('a', 150), true], ['A', false], ['  ', false], [str_repeat('a', 151), false]];
     }
 
-    #[DataProvider('precios')]
+    /** @dataProvider precios */
     public function test_validacion_de_precio(string $price, bool $valid): void
     {
         $r = $this->svc->validate($this->valid(['price' => $price]));
@@ -71,7 +70,7 @@ final class ProductServiceTest extends TestCase
         ];
     }
 
-    #[DataProvider('stocks')]
+    /** @dataProvider stocks */
     public function test_validacion_de_stock(string $stock, bool $valid): void
     {
         $r = $this->svc->validate($this->valid(['stock' => $stock]));

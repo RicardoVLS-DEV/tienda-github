@@ -22,5 +22,12 @@
 ## Seguridad incluida
 Consultas preparadas (PDO), `password_hash`, regeneración de sesión al login, tokens CSRF en todos los POST y escape de salida con `htmlspecialchars`.
 
+## Pruebas
+| Qué comprueba | Comando |
+|---|---|
+| Sintaxis de todos los PHP (compilación) + clases cargan + unitarias | `composer test` |
+| Análisis estático | `composer stan` |
+| Flujo completo con MySQL real (registro, login, CRUD) | `php -S 127.0.0.1:8000 -t public` y en otra terminal `bash tests/smoke.sh` |
+
 ## Integración continua
-El workflow `.github/workflows/ci.yml` corre en cada push y pull request a `main`: instala dependencias, revisa la sintaxis y ejecuta PHPUnit en PHP 8.1, 8.2 y 8.3.
+El workflow `.github/workflows/ci.yml` corre en cada push y pull request a `main`: instala dependencias, revisa la sintaxis y ejecuta PHPUnit en PHP 8.1, 8.2 y 8.3; además corre la prueba de humo contra un MySQL real y PHPStan.

@@ -19,6 +19,7 @@ final class Csrf
 
     public function valid(?string $token): bool
     {
-        return $token !== null && hash_equals((string) $this->session->get('csrf', ''), $token);
+        $expected = (string) $this->session->get('csrf', '');
+        return $expected !== '' && $token !== null && hash_equals($expected, $token);
     }
 }
