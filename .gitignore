@@ -1,0 +1,10 @@
+/vendor/
+/.phpunit.cache/
+.phpunit.result.cache
+
+# Credenciales locales: NUNCA subir a GitHub
+/config/config.local.php
+.env
+.DS_Store
+.idea/
+.vscode/
