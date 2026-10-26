@@ -1,6 +1,6 @@
 <?php
 // Configuración por defecto (usa variables de entorno si existen).
-$config = [
+ = [
     'db' => [
         'host'    => getenv('DB_HOST') ?: '127.0.0.1',
         'port'    => getenv('DB_PORT') ?: '3306',
