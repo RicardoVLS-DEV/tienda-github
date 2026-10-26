@@ -2,7 +2,7 @@
 # Prueba de humo end-to-end: recorre registro, login y CRUD contra un servidor real.
 # Uso: BASE_URL=http://127.0.0.1:8000 bash tests/smoke.sh
 set -u
-BASE="${BASE_URL:-http://127.0.0.1:8000}/index.php"
+BASE="${BASE_URL:-ht://127.0.0.1:8000}/index.php"
 JAR="$(mktemp)"; trap 'rm -f "$JAR"' EXIT
 EMAIL="smoke_$(date +%s)_$RANDOM@mail.com"
 PASS_OK=0; PASS_FAIL=0

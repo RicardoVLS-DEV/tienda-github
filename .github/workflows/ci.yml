@@ -101,10 +101,11 @@ jobs:
         run: cat server.log
 
   # 3) Análisis estático (no bloquea mientras lo ajustas; quita continue-on-error cuando esté en verde)
+  # En ci.yml:
   static-analysis:
     name: PHPStan
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false # <--- Cambia esto a false
     steps:
       - uses: actions/checkout@v4
 
