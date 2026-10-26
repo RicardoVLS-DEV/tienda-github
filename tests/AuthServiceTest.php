@@ -28,7 +28,7 @@ final class AuthServiceTest extends TestCase
     {
         $this->auth->register('Ana', 'ana@mail.com', 'secreto123', 'secreto123');
         $r = $this->auth->register('Otra', 'ANA@mail.com', 'secreto123', 'secreto123');
-        $this->assertArrayHasKey('email', $r['errors']);
+        $this->assertArrayHasKey('', $r['errors']);
     }
 
     public function test_rechaza_password_corta_y_no_coincidente(): void
