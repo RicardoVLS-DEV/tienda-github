@@ -33,7 +33,7 @@ final class ValidatorTest extends TestCase
     }
 
     /** @dataProvider emails */
-    (string $value, bool $valid): void
+    public function test_email(string $value, bool $valid): void
     {
         $this->assertSame(!$valid, (new Validator())->email('e', $value, 'Correo')->fails());
     }
