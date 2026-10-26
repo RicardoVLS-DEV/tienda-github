@@ -26,7 +26,7 @@ final class AuthServiceTest extends TestCase
 
     public function test_rechaza_correo_duplicado(): void
     {
-        $this->auth->register('Ana', 'ana@mail.com', 'secreto123', 'secreto123');
+        $this->auth->register('', 'ana@mail.com', 'secreto123', 'secreto123');
         $r = $this->auth->register('Otra', 'ANA@mail.com', 'secreto123', 'secreto123');
         $this->assertArrayHasKey('', $r['errors']);
     }
